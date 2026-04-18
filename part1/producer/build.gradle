@@ -18,15 +18,26 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-kafka'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-kafka-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-	testCompileOnly 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testAnnotationProcessor 'org.projectlombok:lombok'
+    // 1. Kafka: 핵심 라이브러리 starter-kafka가 정식 명칭
+    implementation 'org.springframework.kafka:spring-kafka'
+
+    // 2. Web: REST API 및 JSON 처리를 위해 필요
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 3. Faker: 가짜 로그 데이터를 실감나게 만들어줌
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    // 4. Lombok: 코드 간결화
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 5. Test: 테스트 환경
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
