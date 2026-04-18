@@ -3,14 +3,14 @@ services:
 #  zookeeper : 카프카 브로커를 관리
 #  최근 카프카는 주키퍼가 없어도 돌아가지만, 학습할 때는 주키퍼를 사용하는 것이 안정적이라고함.
   zookeeper:
-    image: bitnami/zookeeper:3.9.1  # 최신 태그를 명시
+    image: confluentinc/cp-zookeeper:7.5.0
     ports:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes # 보안 설정 없이 누구나 로그인가능 하게 설정해주는 것
 
   kafka:
-    image: bitnami/kafka:3.6.1      # 안정적인 버전 명시
+    image: confluentinc/cp-kafka:7.5.0
     ports:
       - "9092:9092"
     environment:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - zookeeper
 
-# 접속 시도 (Handshake): 스프링 앱이 localhost:9092로 접속합니다. (이때 ports 설정이 쓰입니다.)
+# 접속 시도 (Handshake): 스프링 앱이 localhost:9092로 접속합니다. (이때 ports 설정이 쓰임.)
 # 정보 확인 (Metadata): 스프링 앱이 묻습니다. "나 로그 좀 보내고 싶은데, 누구한테 보내면 돼?"
 # 카프카의 대답: 카프카가 자기소개를 하며 답합니다. "안녕! 나는 'localhost:9092'라고 해. 나한테 보내면 돼!"
 #    -> - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 임.
