@@ -83,7 +83,6 @@ public class TrafficService {
              *  로그를 둘 다 출력해야하는 경우에는 둘다 toString() 을 거치기 때문에 성능상 차이가 업승ㅁ
              *  다만, log.debug 같이 디버그가 꺼져있는 경우라면, toString() 자체를 호출하지 않기 떄문에 DEBUG 로그 가 많을 수록 "{}",message 조합이 훨씬 유리함.
              */
-
         } catch (JsonProcessingException e) {
             log.error("메시지 변환 에러!", e);
         }
